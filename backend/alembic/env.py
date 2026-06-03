@@ -8,7 +8,9 @@ from alembic import context
 from app.core.config import settings
 from app.core.database import Base
 # Import your models here so Alembic detects them
-from app.models.user import User 
+from app.models.user import User
+from app.models.transaction import Transaction
+from app.models.budget import Budget
 
 config = context.config
 if config.config_file_name is not None:
