@@ -8,6 +8,10 @@ from app.services.ml_classifier import classifier_service
 
 router = APIRouter(prefix="/api/v1/ml", tags=["Machine Learning"])
 
+"""
+This module defines the API endpoints for interacting with the machine learning services, specifically for training the transaction category classifier.
+"""
+
 # Endpoint to trigger training of the transaction category classifier. This endpoint fetches all transactions with valid categories, formats them for training, and invokes the ML service to train and persist the model. In a production environment, this would likely be a protected endpoint accessible only to admin users or triggered via a scheduled job rather than being exposed directly.
 @router.post("/train", status_code=status.HTTP_200_OK)
 async def train_classifier(db: AsyncSession = Depends(get_db)):
