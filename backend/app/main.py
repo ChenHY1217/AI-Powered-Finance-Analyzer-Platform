@@ -15,6 +15,7 @@ from app.models.transaction import Transaction
 from app.api.v1.transactions import router as transaction_router
 from app.api.v1.ml import router as ml_router
 from app.api.v1.ai_chat import router as chat_router
+from app.api.v1.analytics import router as analytics_router
 
 app = FastAPI(title=settings.PROJECT_NAME)
 
@@ -30,6 +31,7 @@ app.add_middleware(
 app.include_router(transaction_router)
 app.include_router(ml_router)
 app.include_router(chat_router)
+app.include_router(analytics_router)
 
 # Health check endpoint to verify API and DB connectivity
 @app.get("/api/health")
