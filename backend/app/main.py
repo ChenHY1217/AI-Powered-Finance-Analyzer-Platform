@@ -11,11 +11,14 @@ from app.models.user import User
 from app.models.budget import Budget
 from app.models.transaction import Transaction
 
+DEV_PASSWORD_HASH = "dev-placeholder-password-hash"
+
 # Import API routers
 from app.api.v1.transactions import router as transaction_router
 from app.api.v1.ml import router as ml_router
 from app.api.v1.ai_chat import router as chat_router
 from app.api.v1.analytics import router as analytics_router
+from app.api.v1.auth import router as auth_router
 
 app = FastAPI(title=settings.PROJECT_NAME)
 
@@ -32,6 +35,7 @@ app.include_router(transaction_router)
 app.include_router(ml_router)
 app.include_router(chat_router)
 app.include_router(analytics_router)
+app.include_router(auth_router)
 
 # Health check endpoint to verify API and DB connectivity
 @app.get("/api/health")
@@ -56,7 +60,7 @@ async def create_test_user(payload: UserCreate, db: AsyncSession = Depends(get_d
     if existing_user:
         return {"message": "User already exists", "user_id": existing_user.id}
         
-    new_user = User(email=payload.email)
+    new_user = User(email=payload.email, hashed_password=DEV_PASSWORD_HASH)
     db.add(new_user)
     await db.commit()
     await db.refresh(new_user)

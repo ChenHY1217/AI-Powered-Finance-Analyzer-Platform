@@ -6,7 +6,7 @@ import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, PieChart, Pi
 import { DollarSign, ArrowUpRight, TrendingUp, RefreshCw } from 'lucide-react';
 
 interface Transaction {
-  id: int;
+  id: number;
   amount: number;
   merchant: string;
   category: string;
