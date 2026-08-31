@@ -25,8 +25,8 @@ export default function AuthPage() {
       if (isLogin) {
         // Authenticate existing user
         const res = await api.post('/api/v1/auth/login', { email, password });
-        setToken(res.data.access_token);
-        router.push('/');
+        setToken(res.data.access_token, email);
+        router.replace('/');
       } else {
         // Register new user, then switch to login view
         await api.post('/api/v1/auth/register', { email, password });

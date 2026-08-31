@@ -2,6 +2,7 @@
 'use client';
 import { useEffect, useState } from 'react';
 import { api } from '@/utils/api';
+import { useAuthStore } from '@/store/useAuthStore';
 import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, PieChart, Pie, Cell } from 'recharts';
 import { DollarSign, ArrowUpRight, TrendingUp, RefreshCw } from 'lucide-react';
 
@@ -16,11 +17,11 @@ interface Transaction {
 export default function Dashboard() {
   const [transactions, setTransactions] = useState<Transaction[]>([]);
   const [loading, setLoading] = useState(true);
+  const loggedInEmail = useAuthStore((state) => state.email);
 
   const fetchDashboardData = async () => {
     try {
       setLoading(true);
-      // HARDCODED user_id=1 until Authentication systems are implemented
       const res = await api.get('/api/v1/transactions/');
       setTransactions(res.data);
     } catch (err) {
@@ -62,7 +63,7 @@ export default function Dashboard() {
       <div className="flex justify-between items-center">
         <div>
           <h1 className="text-3xl font-bold tracking-tight text-white">Financial Dashboard</h1>
-          <p className="text-slate-400">Overview performance analytics for active account user_id: 1</p>
+          <p className="text-slate-400">Overview performance analytics for active account: {loggedInEmail ?? 'Unknown account'}</p>
         </div>
         <button 
           onClick={fetchDashboardData}
