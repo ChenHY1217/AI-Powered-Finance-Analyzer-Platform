@@ -21,7 +21,7 @@ export default function Dashboard() {
     try {
       setLoading(true);
       // HARDCODED user_id=1 until Authentication systems are implemented
-      const res = await api.get('/api/v1/transactions/?user_id=1');
+      const res = await api.get('/api/v1/transactions/');
       setTransactions(res.data);
     } catch (err) {
       console.error("Error fetching metrics", err);

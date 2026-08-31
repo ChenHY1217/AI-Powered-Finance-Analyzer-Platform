@@ -14,7 +14,7 @@ export default function ForecastingView() {
     try {
       setLoading(true);
       setError(null);
-      const res = await api.get('/api/v1/analytics/forecast?user_id=1');
+      const res = await api.get('/api/v1/analytics/forecast');
       setData(res.data);
     } catch (err: any) {
       setError(err.response?.data?.detail || "Failed to compile predictive metrics pipeline.");

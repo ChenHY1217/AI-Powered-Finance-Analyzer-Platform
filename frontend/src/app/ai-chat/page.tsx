@@ -27,7 +27,7 @@ export default function AIChatView() {
 
     try {
       // POST up to our agent coordinator framework
-      const res = await api.post('/api/v1/chat/?user_id=1', { message: userMsg });
+      const res = await api.post('/api/v1/chat/', { message: userMsg });
       setMessages((prev) => [...prev, { sender: 'ai', text: res.data.response }]);
     } catch (err) {
       setMessages((prev) => [...prev, { sender: 'ai', text: 'An orchestration execution fault took place while evaluating the data tools layer.' }]);
