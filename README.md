@@ -24,6 +24,20 @@ The system is organized as a full-stack product:
 - PostgreSQL-backed persistence with Alembic migrations
 - Docker-based local setup for backend, frontend, Postgres, and Redis
 
+## Screenshots
+
+### Transaction Upload
+
+Upload a bank statement CSV and review categorized transactions in the transaction workspace.
+
+![Transaction upload screen](images/upload.png)
+
+### Financial Dashboard
+
+Review total spending, tracked transactions, category breakdowns, and expenditure charts.
+
+![Financial analytics dashboard](images/dashboard.png)
+
 ## Architecture
 
 - Frontend: Next.js app in the `frontend/` directory
